@@ -6,3 +6,5 @@ Exploring computer vision (CV) techniques such as keypoint correspondences, homo
 
 The report of findings can be found [here](https://github.com/joshsia/calculator-images-cv/blob/main/report_calculator_images_cv.pdf).
 
+## Credits
+This project was co-authored with Mr Yi Teng Voon.
