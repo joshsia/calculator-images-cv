@@ -1,5 +1,9 @@
 # calculator-images-cv
 
+Authors: Joshua Sia, Yi Teng Voon
+
+Date: 2021-02-14
+
 ## About
 
 Exploring computer vision (CV) techniques such as keypoint correspondences, homography and fundamental matrices, depth map and stereo rectification in MATLAB.
