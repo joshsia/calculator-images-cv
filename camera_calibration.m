@@ -1,5 +1,5 @@
 %% Calibrate
-images = imageDatastore('C:\Users\yiten\Documents\CVPR\CW1\Grid','FileExtensions','.jpg');
+images = imageDatastore('grid','FileExtensions','.jpg');
 [imagePoints,boardSize] = detectCheckerboardPoints(images.Files);
 squareSize = 20;
 worldPoints = generateCheckerboardPoints(boardSize,squareSize);
@@ -19,8 +19,8 @@ figure()
 subaxis(1,2,1,'SpacingHoriz', spaceH,'SpacingVert',spaceV, 'PL',padding,'PR',padding,'mt',marTop,'mb',marBot,'ML',marginL,'MR',margin);
 imshow(I)
 %title('Distorted (top) vs Undistorted (bottom)');
-title({'                                                                        Distorted (Left) vs Undistorted (Right) image of FD001',' '});
+title({'Distorted (Left) vs Undistorted (Right) image of FD001',' '});
 subaxis(1,2,2,'SpacingHoriz', spaceH,'SpacingVert',spaceV, 'PL',padding,'PR',padding,'mt',marTop,'mb',marBot,'ML',marginL,'MR',margin);
 imshow(J2)
-%saveas(gcf, "CW1_Images/distorted_vs_undistorted.eps", "epsc");
-saveas(gcf, "CW1_Images/distorted_vs_undistorted_2_coeffs.eps", "epsc");
+%saveas(gcf, "results/distorted_vs_undistorted.eps", "epsc");
+saveas(gcf, "results/distorted_vs_undistorted_2_coeffs.eps", "epsc");

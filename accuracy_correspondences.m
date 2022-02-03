@@ -1,9 +1,8 @@
 %% Accuracy of correspondences
 
 % Accuracy metric used here gives very low numbers for all the automatic
-% methods. The code is most likely right; I think the problem is because we
-% have very few points so nested CV is a bit of a stretch (unable to find
-% optimal parameters well)
+% methods. I think the problem is because we have very few points so 
+% nested CV is a bit of a stretch (unable to find optimal parameters well)
 
 % Loading data
 clear all; close all; clc;
@@ -11,35 +10,34 @@ clear all; close all; clc;
 % Type 1: FD images, Type 2: HG images
 
 % Manual method to find correspondences
-%load('fd001_002_manual.mat'); 
-%load('fd003_004_manual.mat'); 
-%load('hg001_002_manual.mat'); 
-%load('hg003_004_manual.mat'); 
+%load('fd-data-matrices/fd001_002_manual.mat'); 
+%load('fd-data-matrices/fd003_004_manual.mat'); 
+%load('hg-data-matrices/hg001_002_manual.mat'); 
+%load('hg-data-matrices/hg003_004_manual.mat'); 
 
 % Automatic (Harris) method to find correspondences
 % FD
-load('fd001_002_harris.mat'); 
-%load('fd001_002_2_harris.mat'); 
-%load('fd002_001_harris.mat'); 
-%load('fd001_003_harris.mat'); % Too few correspondences 
-%load('fd001_004_harris.mat'); % Too few correspondences
-%load('fd001_005_harris.mat'); % Too few correspondences
-%load('fd001_006_harris.mat'); % Too few correspondences
-%load('fd001_007_harris.mat'); % Too few correspondences
-%load('fd003_004_harris.mat'); % Too few correspondences
+load('fd-data-matrices/fd001_002_harris.mat'); 
+%load('fd-data-matrices/fd001_002_2_harris.mat'); 
+%load('fd-data-matrices/fd002_001_harris.mat'); 
+%load('fd-data-matrices/fd001_003_harris.mat'); % Too few correspondences 
+%load('fd-data-matrices/fd001_004_harris.mat'); % Too few correspondences
+%load('fd-data-matrices/fd001_005_harris.mat'); % Too few correspondences
+%load('fd-data-matrices/fd001_006_harris.mat'); % Too few correspondences
+%load('fd-data-matrices/fd001_007_harris.mat'); % Too few correspondences
+%load('fd-data-matrices/fd003_004_harris.mat'); % Too few correspondences
 
-%HG
-%load('hg001_002_harris.mat'); 
-%load('hg003_004_harris.mat'); 
+% HG
+%load('hg-data-matrices/hg001_002_harris.mat'); 
+%load('hg-data-matrices/hg003_004_harris.mat'); 
 
 % Automatic (SURF) method to find correspondences
-%load('fd001_002_surf.mat'); 
-%load('fd003_004_surf.mat'); 
-%load('hg001_002_surf.mat'); 
-%load('hg003_004_surf.mat'); 
+%load('fd-data-matrices/fd001_002_surf.mat'); 
+%load('fd-data-matrices/fd003_004_surf.mat'); 
+%load('hg-data-matrices/hg001_002_surf.mat'); 
+%load('hg-data-matrices/hg003_004_surf.mat'); 
 
 % Nested CV
-
 corresPoints = [fixedPoints movingPoints];
 
 rng(223);
@@ -100,13 +98,9 @@ if(n>11)
             test_x = [validation(:,1:2) 1];
             test_y = [validation(:,3:4) 1];
 
-    %         test_x = validation(:,1:2);
-    %         test_y = validation(:,3:4);
-
             % Calculate LOOCV error (mean square error)
             predict = h*test_x';
             predict = predict/predict(end);
-    %         predict = homography_transform(test_x', h);
             L2_dist = sqrt(sum((test_y'-predict).^2));
             mse = mean(L2_dist);
             LOOCV_error(j) = mse;
@@ -120,15 +114,10 @@ if(n>11)
         outer_test_x = [outer_test(:,1:2) ones(length(outer_test(:,1)),1)];
         outer_test_y = [outer_test(:,3:4) ones(length(outer_test(:,1)),1)];
 
-    %     outer_test_x = outer_test(:,1:2);
-    %     outer_test_y = outer_test(:,3:4);
-
         % Predict outer_test_x using opt_h
         predict = opt_h*outer_test_x';
         z = predict(end,:);
         predict = predict ./ z;
-
-    %     predict = homography_transform(outer_test_x', opt_h);
 
         % Root mean square error
         L2_dist = sqrt(sum((outer_test_y'-predict).^2));
@@ -152,8 +141,6 @@ if(n>11)
     mean_CV_error = mean(CV_error)
     sd_CV_error = std(CV_error)
 
-%     mean_accuracy = mean(accuracy)
-%     sd_accuracy = std(accuracy)
 else
     disp('Too few correspondences')
 end

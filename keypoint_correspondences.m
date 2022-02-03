@@ -1,9 +1,9 @@
 %% Manual Correspondences for FD 001 & 002
 close all
 %clear all
-load('fd001_002_manual.mat')
-fd001 = imread('FD/FD_001.jpg');
-fd002 = imread('FD/FD_002.jpg');
+load('fd-data-matrices/fd001_002_manual.mat')
+fd001 = imread('raw-images/FD/FD_001.jpg');
+fd002 = imread('raw-images/FD/FD_002.jpg');
 
 %Define spacings
 spaceH=0.03;spaceV=0.03;marTop=0.05;marBot=0;
@@ -27,7 +27,7 @@ for k=1:length(fixedPoints)
     text(fixedPoints(k,1)+80,fixedPoints(k,2)+110,num2str(k),'margin',1,'backgroundcolor','w','fontsize',6,'HorizontalAlignment', 'Center', 'VerticalAlignment', 'Middle')
 end
 annotation('textbox', [0.15, 0.25, 0, 0], 'string', 'FD002')
-saveas(gcf, "CW1_Images/fd001_002_manual.eps", "epsc");
+saveas(gcf, "results/fd001_002_manual.eps", "epsc");
 
 %% Automatic Correspondences for FD 001 & 002
 points1 = cast(matchedPoints1.Location,'double');
@@ -50,14 +50,14 @@ for k=1:length(points2)
     text(points2(k,1)+80,points2(k,2)+110,num2str(k),'margin',1,'backgroundcolor','w','fontsize',6,'HorizontalAlignment', 'Center', 'VerticalAlignment', 'Middle')
 end
 annotation('textbox', [0.15, 0.25, 0, 0], 'string', 'FD002')
-saveas(gcf, "CW1_Images/fd001_002_auto.eps", "epsc");
+saveas(gcf, "results/fd001_002_auto.eps", "epsc");
 
 %% Manual Correspondences for HG 001 & 002
 close all
 clear all
-load('hg003_004_manual.mat')
-hg001 = imread('HG/HG_003.jpg');
-hg002 = imread('HG/HG_004.jpg');
+load('hg-data-matrices/hg003_004_manual.mat')
+hg001 = imread('raw-images/HG/HG_003.jpg');
+hg002 = imread('raw-images/HG/HG_004.jpg');
 
 %Define spacings
 spaceH=0.03;spaceV=0.03;marTop=0.05;marBot=0;
@@ -82,12 +82,12 @@ for k=1:length(fixedPoints)
     text(fixedPoints(k,1)+80,fixedPoints(k,2)+110,num2str(k),'margin',1,'backgroundcolor','w','fontsize',6,'HorizontalAlignment', 'Center', 'VerticalAlignment', 'Middle')
 end
 %annotation('textbox', [0.15, 0.25, 0, 0], 'string', 'HG004')
-saveas(gcf, "CW1_Images/hg003_004_projection.eps", "epsc");
+saveas(gcf, "results/hg003_004_projection.eps", "epsc");
 
 %% Automatic Correspondences for HG 001 & 002
-hg001 = imread('HG/HG_001.jpg');
-hg002 = imread('HG/HG_002.jpg');
-load('hg001_002_surf.mat')
+hg001 = imread('raw-images/HG/HG_001.jpg');
+hg002 = imread('raw-images/HG/HG_002.jpg');
+load('hg-data-matrices/hg001_002_surf.mat')
 
 %Define spacings
 spaceH=0.03;spaceV=0.03;marTop=0.05;marBot=0;
@@ -103,7 +103,7 @@ scatter(points1(:,1),points1(:,2),20,'+','cyan','linewidth',0.75)
 for k=1:length(points1)
     text(points1(k,1)+80,points1(k,2)+110,num2str(k),'margin',1,'backgroundcolor','w','fontsize',6,'HorizontalAlignment', 'Center', 'VerticalAlignment', 'Middle')
 end
-title('                                                                       Automatic Correspondences for HG 001 (Left) & 002 (Right)')
+title('Automatic Correspondences for HG 001 (Left) & 002 (Right)')
 %annotation('textbox', [0.15, 0.75, 0, 0], 'string', 'HG001')
 subaxis(1,2,2,'SpacingHoriz', spaceH,'SpacingVert',spaceV, 'PL',padding,'PR',padding,'mt',marTop,'mb',marBot,'ML',marginL,'MR',margin);
 imshow(hg002)
@@ -113,4 +113,4 @@ for k=1:length(points2)
     text(points2(k,1)+80,points2(k,2)+110,num2str(k),'margin',1,'backgroundcolor','w','fontsize',6,'HorizontalAlignment', 'Center', 'VerticalAlignment', 'Middle')
 end
 %annotation('textbox', [0.15, 0.25, 0, 0], 'string', 'HG002')
-saveas(gcf, "CW1_Images/hg001_002_auto_side.eps", "epsc");
+saveas(gcf, "results/hg001_002_auto_side.eps", "epsc");

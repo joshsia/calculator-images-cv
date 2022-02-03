@@ -2,7 +2,7 @@
 
 clear all; close all; clc;
 
-load('cameraParams2.mat')
+load('camera-params/cameraParams2.mat')
 rad_dist = cameraParams2.RadialDistortion;
 tan_dist = cameraParams2.TangentialDistortion;
 
@@ -109,7 +109,7 @@ distortionY = subs(y * (1 + k_1 * r^2 + k_2 * r^4) + 2 * p_2 * x * y + p_1 * (r^
 
 
 % Set Parameters (distorted)
-load('cameraParams2.mat')
+load('camera-params/cameraParams2.mat')
 rad_dist = cameraParams2.RadialDistortion;
 tan_dist = cameraParams2.TangentialDistortion;
 

@@ -12,8 +12,8 @@
 
 
 %% FD using Harris
-fd1 = rgb2gray(imread('FD/FD_001.jpg'));
-fd2 = rgb2gray(imread('FD/FD_002.jpg'));
+fd1 = rgb2gray(imread('raw-images/FD/FD_001.jpg'));
+fd2 = rgb2gray(imread('raw-images/FD/FD_002.jpg'));
 
 points1 = detectHarrisFeatures(fd1,'filtersize',3,'roi',[980 1000 2000 800]);
 points2 = detectHarrisFeatures(fd2,'filtersize',3,'roi',[980 1000 2000 800]);
@@ -32,8 +32,8 @@ title(ax, 'Correspondence');
 legend(ax, 'Matched points 1','Matched points 2');
 
 %% FD using SURF
-fd1 = rgb2gray(imread('FD/FD_003.jpg'));
-fd2 = rgb2gray(imread('FD/FD_004.jpg'));
+fd1 = rgb2gray(imread('raw-images/FD/FD_003.jpg'));
+fd2 = rgb2gray(imread('raw-images/FD/FD_004.jpg'));
 
 
 % ROI for FD 001 & 002
@@ -58,8 +58,8 @@ title(ax, 'Automatic Correspondences for FD 001 & 002');
 legend(ax, 'Matched points 1','Matched points 2');
 
 %% HG using Harris
-hg1 = rgb2gray(imread('HG\HG_003.jpg'));
-hg2 = rgb2gray(imread('HG\HG_004.jpg'));
+hg1 = rgb2gray(imread('raw-images/HG/HG_003.jpg'));
+hg2 = rgb2gray(imread('raw-images/HG/HG_004.jpg'));
 
 points1 = detectHarrisFeatures(hg1,'roi',[900 1000 2000 900]);
 points2 = detectHarrisFeatures(hg2,'roi',[900 1000 2000 900]);
@@ -80,8 +80,8 @@ legend(ax, 'Matched points 1','Matched points 2');
 % legend('matched points 1','matched points 2');
 
 %% HG using SURF
-hg1 = rgb2gray(imread('HG\HG_001.jpg'));
-hg2 = rgb2gray(imread('HG\HG_002.jpg'));
+hg1 = rgb2gray(imread('raw-images/HG/HG_001.jpg'));
+hg2 = rgb2gray(imread('raw-images/HG/HG_002.jpg'));
 %hg2 = imresize(imrotate(hg1,-20),1.2);
 
 points1 = detectSURFFeatures(hg1,'metricthreshold',15000,'numoctaves',3,'numscalelevels',9,'roi',[900 1000 2000 900]);

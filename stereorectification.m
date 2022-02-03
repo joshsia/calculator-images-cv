@@ -1,13 +1,13 @@
 %% Rectified stereo images and depth map
-fd001 = imread('FD/FD_001.jpg');
-fd002 = imread('FD/FD_002.jpg');
+fd001 = imread('raw-images/FD/FD_001.jpg');
+fd002 = imread('raw-images/FD/FD_002.jpg');
 
 [t1, t2] = estimateUncalibratedRectification(f1, movingPoints, fixedPoints, size(fd001));
 tform1 = projective2d(t1);
 tform2 = projective2d(t2);
 
 [I1Rect, I2Rect] = rectifyStereoImages(fd001, fd002, tform1, tform2);
-load('fd001_002_rect_manual.mat')
+load('fd-data-matrices/fd001_002_rect_manual.mat')
 
 %Define spacings
 spaceH=0.03;spaceV=0.03;marTop=0.05;marBot=0;
@@ -40,8 +40,8 @@ for i = 1:length(fixedPoints)
 plot([0,length(I2Rect)],[fixedPoints(i,2),fixedPoints(i,2)])
 end
 scatter(fixedPoints(:,1)+445, fixedPoints(:,2),'cyan')
-title('Rectified Stereo Images for FD001 (Left) & FD002 (Right)                                                                       ');
-saveas(gcf,'CW1_Images/rect_fd001_002_epipolar_side','epsc')
+title('Rectified Stereo Images for FD001 (Left) & FD002 (Right)');
+saveas(gcf,'results/rect_fd001_002_epipolar_side','epsc')
 
 %%
 disparityRange = [-24 24];
@@ -52,4 +52,4 @@ title('Depth Map between Rectified FD 001 & 002','fontsize',18);
 colormap(gca,jet) 
 colorbar
 % set(gca,'ColorScale','log')
-saveas(gcf,'CW1_Images/disparity_map.eps','epsc')
+saveas(gcf,'results/disparity_map.eps','epsc')
